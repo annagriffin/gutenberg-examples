@@ -24,12 +24,45 @@ const Edit = ( props ) => {
 		} );
 	};
 	const onChangeIngredients = ( value ) => {
+		console.log(getFoodNutrition(value));
 		setAttributes( { ingredients: value } );
 	};
 
 	const onChangeInstructions = ( value ) => {
 		setAttributes( { instructions: value } );
 	};
+
+	function getFoodNutrition(value) {
+		const initials = {
+						calories: 0,
+						carbs: 0,
+						fat: 0,
+						}
+   const caloriesData = {
+       egg: {calories: 105, carbs: 42, fat:1},
+       milk: {calories: 52, carbs: 33, fat:4},
+       butter: {calories: 237, carbs: 2, fat:21},
+       flour: {calories: 34, carbs: 83, fat:6},
+       cream: {calories: 223, carbs: 3, fat:44}
+	}
+
+   // Convert list string value to array
+   value = value.replaceAll('<li>','').split('</li>');
+
+   // Loop over the caloriesData keys
+   let ingredientTotals = Object.keys(caloriesData)
+				// filter keys that are in the value (entries)
+				.filter(key => value.filter(ingredient => ingredient === key).length)
+				// Calculate sum of calories, carbs, fat
+				.reduce((res, key) => ({
+						calories: res.calories + caloriesData[key].calories,
+						carbs: res.carbs + caloriesData[key].carbs,
+						fat: res.fat + caloriesData[key].fat
+				}), initials);
+
+   return `Calories: ${ingredientTotals.calories}kcal - Carbs: ${ingredientTotals.carbs}gr - fat: ${ingredientTotals.fat}gr`;
+	};
+
 
 	return (
 		<div { ...blockProps }>
