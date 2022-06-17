@@ -7,7 +7,7 @@ import { Button } from '@wordpress/components';
 
 const Edit = ( props ) => {
 	const {
-		attributes: { title, mediaID, mediaURL, ingredients, instructions },
+		attributes: { title, mediaID, mediaURL, ingredients, instructions, notes },
 		setAttributes,
 	} = props;
 
@@ -30,6 +30,10 @@ const Edit = ( props ) => {
 
 	const onChangeInstructions = ( value ) => {
 		setAttributes( { instructions: value } );
+	};
+
+	const onChangeNotes = ( value ) => {
+		setAttributes( { notes: value } );
 	};
 
 	function getFoodNutrition(value) {
@@ -65,67 +69,92 @@ const Edit = ( props ) => {
 
 
 	return (
-		<div { ...blockProps }>
+		<div {...blockProps}>
 			<RichText
 				tagName="h1"
-				placeholder={ __(
+				placeholder={__(
 					'Write Recipe title…',
 					'gutenberg-examples'
-				) }
-				value={ title }
-				onChange={ onChangeTitle }
+				)}
+				value={title}
+				onChange={onChangeTitle}
 			/>
-			<div className="recipe-image">
-				<MediaUpload
-					onSelect={ onSelectImage }
-					allowedTypes="image"
-					value={ mediaID }
-					render={ ( { open } ) => (
-						<Button
-							className={
-								mediaID ? 'image-button' : 'button button-large'
-							}
-							onClick={ open }
-						>
-							{ ! mediaID ? (
-								__( 'Upload Image', 'gutenberg-examples' )
-							) : (
-								<img
-									src={ mediaURL }
-									alt={ __(
-										'Upload Recipe Image',
-										'gutenberg-examples'
-									) }
-								/>
-							) }
-						</Button>
-					) }
-				/>
+			<hr />
+			<div className="container">
+				<div className="col-40">
+					<div className="row-ingredients">
+						<h3 className="sub-header">{__('Ingredients', 'gutenberg-examples')}</h3>
+						<RichText
+							tagName="ul"
+							multiline="li"
+							placeholder={__(
+								'Write a list of ingredients…',
+								'gutenberg-examples'
+							)}
+							value={ingredients}
+							onChange={onChangeIngredients}
+							className="ingredients"
+						/>
+					</div>
+					<div className="row-notes">
+						<h3 className="sub-header">{__('Notes', 'gutenberg-examples')}</h3>
+						<RichText
+							tagName="div"
+							multiline="p"
+							className="notes"
+							placeholder={__(
+								'Write your notes here...',
+								'gutenberg-examples'
+							)}
+							value={notes}
+							onChange={onChangeNotes}
+						/>
+					</div>
+				</div>
+				<div className="col-60">
+					<div className="recipe-image">
+						<MediaUpload
+							onSelect={onSelectImage}
+							allowedTypes="image"
+							value={mediaID}
+							render={({ open }) => (
+								<Button
+									className={
+										mediaID ? 'image-button' : 'button button-large'
+									}
+									onClick={open}
+								>
+									{!mediaID ? (
+										__('Upload Image', 'gutenberg-examples')
+									) : (
+										<img
+											src={mediaURL}
+											alt={__(
+												'Upload Recipe Image',
+												'gutenberg-examples'
+											)}
+										/>
+									)}
+								</Button>
+							)}
+						/>
+					</div>
+					<div className="instructions">
+						<h3 className="sub-header">{__('Instructions', 'gutenberg-examples')}</h3>
+						<RichText
+							tagName="div"
+							multiline="p"
+							className="steps"
+							placeholder={__(
+								'Write the instructions…',
+								'gutenberg-examples'
+							)}
+							value={instructions}
+							onChange={onChangeInstructions}
+						/>
+					</div>
+				</div>
 			</div>
-			<h3>{ __( 'Ingredients', 'gutenberg-examples' ) }</h3>
-			<RichText
-				tagName="ul"
-				multiline="li"
-				placeholder={ __(
-					'Write a list of ingredients…',
-					'gutenberg-examples'
-				) }
-				value={ ingredients }
-				onChange={ onChangeIngredients }
-				className="ingredients"
-			/>
-			<h3>{ __( 'Instructions', 'gutenberg-examples' ) }</h3>
-			<RichText
-				tagName="div"
-				multiline="p"
-				className="steps"
-				placeholder={ __(
-					'Write the instructions…',
-					'gutenberg-examples'
-				) }
-				value={ instructions }
-				onChange={ onChangeInstructions }
-			/>
 		</div>
 	);
 };

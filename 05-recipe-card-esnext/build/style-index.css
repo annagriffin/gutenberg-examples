@@ -6,15 +6,15 @@
  * editor-specific styles using the same selectors will take precedence.
  */
 .wp-block-gutenberg-examples-example-05-recipe-card-esnext .recipe-image {
-	background: #f1f1f1;
-	float: right;
-	width: 50%;
-	min-height: 100px;
 	text-align: center;
+	overflow: hidden;
+	height: 280px;
+	margin-bottom: 2em;
 }
 
 .wp-block-gutenberg-examples-example-05-recipe-card-esnext .recipe-image button {
 	margin-top: 30px;
+	height: 100%;
 }
 
 .wp-block-gutenberg-examples-example-05-recipe-card-esnext .recipe-image button.image-button {
@@ -23,18 +23,42 @@
 	display: block;
 }
 
-.wp-block-gutenberg-examples-example-05-recipe-card-esnext .recipe-image img {
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext .recipe-image img,
+.continer .recipe-img {
 	display: block;
 	z-index: 1;
 	position: relative;
+	width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	
+}
+
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext h1
+ {
+	text-align: center;
 }
 
 .wp-block-gutenberg-examples-example-05-recipe-card-esnext h2 {
-	font-size: 1.5em;
+	font-size: 1.8em;
 }
 
-.wp-block-gutenberg-examples-example-05-recipe-card-esnext ul {
-	padding-left: 2.5em !important; /* Needs fix in Gutenberg. */
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext .sub-header,
+.container h3 {
+	font-size: 36px;
+	margin-top: 0;
+	margin-bottom: 0.2em;
+}
+
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext ul,
+.continer ul {
+	list-style-type: '📌';
+	padding-left: 15px !important; /* Needs fix in Gutenberg. */
+	margin-top: 0 !important;
+}
+
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext li {
+	padding: 0.2em;
 }
 
 .wp-block-gutenberg-examples-example-05-recipe-card-esnext:after { 
@@ -43,23 +67,58 @@
 	display: table; 
 }
 
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext .container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.row-ingredients {
+	min-height: 314px;
+}
+
+.row-notes {
+	min-height: 310px;
+}
+
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext .col-40,
+.container .col-40 {
+	width: 40%;
+	margin-right: 16px;
+	border-right: 2px solid #e0cde0;
+}
+
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext .col-60,
+.container .col-60 {
+	width: 60%;
+}
+
+.wp-block-gutenberg-examples-example-05-recipe-card-esnext hr {
+	border-bottom: 1px solid #e0cde0;
+}
+
+hr.divider {
+	border: 1px solid #e0cde0;
+}
+
 .cooking-time-container {
 	display: flex;
+	margin: auto;
 	justify-content: space-between;
-	max-width: 280px;
-	background-color: #D8F3EF57;
+	max-width: 356px;
 	padding: 8px;
+	text-align: center;
 }
 
 .time-estimate-title {
-	color: #1f6d61 ;
-	font-weight: bold;
+	color: rgb(204, 166, 204) ;
+	font-weight: thin;
 	text-transform: uppercase;
 	font-size: 14px;
 }
 
 .time-estimate {
-	font-size: 16px;
+	font-size: 14px;
 }
 
 

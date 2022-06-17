@@ -29,6 +29,11 @@
 			"type": "string",
 			"source": "html",
 			"selector": ".steps"
+		},
+		"notes": {
+			"type": "string",
+			"source": "html",
+			"selector": ".notes"
 		}
 	},
 	"example": {
@@ -46,6 +51,12 @@
 				{
 					"type": "p",
 					"props": { "children": ["Mix, Bake, Enjoy!"] }
+				}
+			],
+			"notes": [
+				{
+					"type": "p",
+					"props": { "children": ["Yummy recipe, great for a nice winter day"]}
 				}
 			]
 		}
