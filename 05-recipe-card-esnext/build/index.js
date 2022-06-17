@@ -108,8 +108,8 @@ const Edit = props => {
 
     value = value.replaceAll('<li>', '').split('</li>'); // Loop over the caloriesData keys
 
-    let ingredientTotals = Object.keys(caloriesData) // filter keys that are in the value (entries)
-    .filter(key => value.filter(ingredient => ingredient === key).length) // Calculate sum of calories, carbs, fat
+    let ingredientTotals = value // filter value (entries) that are in the keys
+    .filter(key => Object.keys(caloriesData).filter(ingredient => ingredient === key).length) // Calculate sum of calories, carbs, fat
     .reduce((res, key) => ({
       calories: res.calories + caloriesData[key].calories,
       carbs: res.carbs + caloriesData[key].carbs,
